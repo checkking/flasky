@@ -71,3 +71,10 @@ def index():
         return redirect(url_for('index'))
     return render_template('index.html', form=form, name=session.get('name'),
                            known=session.get('known', False))
+
+
+@app.route('/user/list')
+def user_list():
+    users = User.query.all()  # 查询所有用户
+    return render_template('user_list.html', users=users)
+
