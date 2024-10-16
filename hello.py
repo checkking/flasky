@@ -7,13 +7,13 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
 
-basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
-app.config['SQLALCHEMY_DATABASE_URI'] =\
-    'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:987654321@localhost:3306/testdb' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'isolation_level': 'READ COMMITTED'}
+#app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'tx_isolation': 'READ COMMITTED'}
 
 bootstrap = Bootstrap(app)
 moment = Moment(app)
